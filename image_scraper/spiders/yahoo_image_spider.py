@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import scrapy
+from image_scraper.items import ImageScraperItem
+
+
+DOWNLOAD_LIMIT = 1000
 
 
 class YahooImageSpider(scrapy.Spider):
@@ -17,20 +21,20 @@ class YahooImageSpider(scrapy.Spider):
         yield scrapy.Request(url, self.parse)
 
     def parse(self, response):
-        query = self.query
+        items = ImageScraperItem()
+        items['query'] = self.query
+        items['image_urls'] = []
 
         for src in response.css('#gridlist > div'):
             self.image_id += 1
-            extracted = {
-                'id': self.image_id,
-                'query': query,
-                'src': src.css('div > p > a > img::attr(src)').extract_first()
-            }
 
-            if self.image_id >= 40:
-                return extracted
+            url = src.css('div > p > a > img::attr(src)').extract_first()
+            items['image_urls'].append(url)
+
+            if self.image_id >= DOWNLOAD_LIMIT:
+                return items
             else:
-                yield extracted
+                yield items
 
         css_next_page = '#Sp1 > p > span.m > a::attr(href)'
         next_page = response.css(css_next_page).extract_first()
