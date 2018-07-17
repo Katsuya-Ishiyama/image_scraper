@@ -12,7 +12,7 @@ from scrapy.item import Field
 class ImageScraperItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    query = Field()
+    member_id = Field()
+    image_ids = Field()
     image_urls = Field()
     images = Field()
-

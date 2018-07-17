@@ -64,8 +64,11 @@ DOWNLOAD_DELAY = 3
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+#ITEM_PIPELINES = {
+#    'image_scraper.pipelines.ImageScraperPipeline': 300,
+#}
 ITEM_PIPELINES = {
-    'image_scraper.pipelines.ImageScraperPipeline': 300,
+    'image_scraper.pipelines.ImageScraperPipeline': 1,
 }
 IMAGES_STORE = './download'
 
