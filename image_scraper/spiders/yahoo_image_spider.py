@@ -6,10 +6,6 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
 
-
-DOWNLOAD_LIMIT = 1000
-
-
 class YahooImageSpider(CrawlSpider):
 
     name = 'yahoo_image'
