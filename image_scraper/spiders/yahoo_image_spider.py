@@ -36,7 +36,7 @@ class YahooImageSpider(CrawlSpider):
         for src in response.css('#gridlist > div'):
             self.image_id += 1
 
-            url = src.css('div > p > a > img::attr(src)').extract_first()
+            url = src.css('div > p > a::attr(href)').extract_first()
             items['image_ids'].append(self.image_id)
             items['image_urls'].append(url)
 
