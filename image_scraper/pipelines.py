@@ -30,9 +30,11 @@ class ImageScraperPipeline(ImagesPipeline):
                 checksum = md5sum(buf)
             width, height = image.size
             # TODO: append suffix to the path.
-            path = '{member_id:03d}/{image_id:04d}'.format(
+            suffix = pathlib.Path(path).suffix
+            path = '{member_id:03d}/{image_id:04d}{suffix}'.format(
                 member_id=int(request.meta['member_id']),
-                image_id=request.meta['image_id']
+                image_id=request.meta['image_id'],
+                suffix=suffix
             )
             self.store.persist_file(
                 path=path,
