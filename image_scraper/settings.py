@@ -61,6 +61,10 @@ DOWNLOAD_DELAY = 3
 #EXTENSIONS = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
+EXTENSIONS = {
+    'scrapy.extensions.closespider.CloseSpider': 1,
+}
+CLOSESPIDER_ITEMCOUNT = 10
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
