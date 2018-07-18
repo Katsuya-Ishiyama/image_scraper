@@ -29,7 +29,6 @@ class ImageScraperPipeline(ImagesPipeline):
                 buf.seek(0)
                 checksum = md5sum(buf)
             width, height = image.size
-            # TODO: append suffix to the path.
             suffix = pathlib.Path(path).suffix
             path = '{member_id:03d}/{image_id:04d}{suffix}'.format(
                 member_id=int(request.meta['member_id']),
