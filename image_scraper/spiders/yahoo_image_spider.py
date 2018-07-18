@@ -40,4 +40,9 @@ class YahooImageSpider(CrawlSpider):
             items['image_ids'].append(self.image_id)
             items['image_urls'].append(url)
 
-        return items
+        yield items
+
+        css_next_page = '#Sp1 > p > span.m > a::attr(href)'
+        next_page = response.css(css_next_page).extract_first()
+        if next_page is not None:
+            yield response.follow(next_page, callback=self.parse)
