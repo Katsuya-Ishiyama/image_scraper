@@ -2,17 +2,12 @@
 
 import scrapy
 from image_scraper.items import ImageScraperItem
-from scrapy.spiders import CrawlSpider, Rule
-from scrapy.linkextractors import LinkExtractor
+from scrapy.spiders import CrawlSpider
 
 
 class YahooImageSpider(CrawlSpider):
 
     name = 'yahoo_image'
-
-    rules = (
-        Rule(LinkExtractor(allow=( )), callback="parse", follow=True),
-    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
