@@ -15,4 +15,4 @@ class ImageScraperItem(scrapy.Item):
     member_id = Field()
     image_ids = Field()
     image_urls = Field()
-    images = Field()
+
